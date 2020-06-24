@@ -59,14 +59,15 @@ int main() {
 	}
   fclose(fptr);
 
+	/* 
+	*		DECODING SECTION
+	*/
 	// Read the encoded string from file
   char encodedString[1000];
 	readText("encoded.txt", encodedString);
   printf("EncodedString: %s\n", encodedString);
 
-	/* 
-	*		DECODING SECTION
-	*/
+	// Decoding
   printf("DecodedString: ");
 	if ((fptr = fopen("decoded.txt", "w")) == NULL) {
     printf("Error! opening file");
@@ -85,7 +86,7 @@ int main() {
 		// Convert the hex string to hex int
 		hex = (int)strtol(encodedPair, NULL, 16);
 		// Decode and print to file and console
-		//fprintf(fptr, "%s", decode_string(hex, rotatingKeys[currentKey] % 16));
+		fprintf(fptr, "%s", decode_string(hex, rotatingKeys[currentKey] % 16));
 		printf("%s", decode_string(hex, rotatingKeys[currentKey++] % 16));
 	}
   fclose(fptr);
